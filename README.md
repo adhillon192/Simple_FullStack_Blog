@@ -11,3 +11,6 @@ This is a Web2-based blog management application built with **Express.js** for t
 - Pop-up notifications for add/update actions
 - Responsive navigation bar
 - Simple database running inside Docker
+
+## How to run the container
+docker-compose up --build
