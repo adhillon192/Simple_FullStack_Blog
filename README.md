@@ -68,8 +68,8 @@ web2-blog-app/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/web2-blog-app.git
-cd web2-blog-app
+git clone https://github.com/yourusername/Simple_FullStack_Blog.git
+cd Simple_FullStack_Blog
 ```
 ### 2. Start with Docker Compose
 ```bash
