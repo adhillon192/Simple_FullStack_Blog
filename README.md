@@ -166,4 +166,3 @@ Each endpoint expects and returns JSON. Example structure for creating or updati
 Made with ❤️ by Amardeep Singh Dhillon and Helga  
 **COMP 3512 – Web Development II**  
 **Mount Royal University, 2025**
-

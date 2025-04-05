@@ -1,9 +1,10 @@
+<!-- blog.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Courses</title>
+    <title>Blog</title>
     <link rel="stylesheet" href="bulma.min.css" />
     <script src="index.js" defer></script>
   </head>
@@ -12,21 +13,16 @@
     <div class="container">
       <nav class="breadcrumb is-centered mt-2" aria-label="breadcrumbs">
         <ul>
-            <li><a href="addpost.html">Add Post</a></li>
-            <li><a href="managepost.html">Manage Posts</a></li>
-            <li><a href="blog.html">Blog</a></li>
+          <li><a href="addpost.html">Add Post</a></li>
+          <li><a href="managepost.html">Manage Posts</a></li>
+          <li class="is-active"><a href="#" aria-current="page">Blog</a></li>
         </ul>
       </nav>
 
-      <div id="section-container">
-        <section class="section">
-          <h2 class="title">Title</h2>
-          <ul>
-            <li></li>
-          </ul>
-          <hr />
-        </section>
-      </div>
+      <section class="section">
+        <h2 class="title">All Blog Posts</h2>
+        <div id="posts-container" class="mt-5"></div>
+      </section>
     </div>
   </body>
 </html>
