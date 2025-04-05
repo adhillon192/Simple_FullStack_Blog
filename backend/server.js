@@ -38,7 +38,22 @@ app.get('/api/posts', async (req, res) => {
   const result = await pool.query('SELECT * FROM posts ORDER BY id DESC');
   res.json(result.rows);
 });
+app.delete('/api/posts/:id', async (req, res) => {
+  const { id } = req.params;
 
+  try {
+    const result = await pool.query('DELETE FROM posts WHERE id = $1', [id]);
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    res.status(200).json({ message: 'Post deleted' });
+  } catch (err) {
+    console.error('Error deleting post:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
