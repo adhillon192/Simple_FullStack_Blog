@@ -58,7 +58,78 @@ document.addEventListener("DOMContentLoaded", async () => {
                 alert("Server error while deleting post.");
               }
             });
-  
+  // === 🔁 EDIT MODE STARTS HERE ===
+            const editForm = document.createElement("form");
+            editForm.className = "edit-form is-hidden"; // Initially hidden
+            box.appendChild(editForm);
+
+            // Populate form with current post data
+  editForm.innerHTML = `
+    <div class="field">
+      <label class="label">Title</label>
+      <div class="control">
+        <input class="input title-input" type="text" value="${post.title}" />
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Content</label>
+      <div class="control">
+        <textarea class="textarea content-input content-box" rows="6">${post.content}</textarea>
+
+      </div>
+    </div>
+    <div class="buttons mt-2">
+      <button class="button is-link is-light clear-edit">Clear</button>
+      <button class="button is-success update-post">Update Post</button>
+    </div>
+    <br><br><br>
+  `;
+
+  // Toggle form on Edit click
+  editBtn.addEventListener("click", () => {
+    editForm.classList.toggle("is-hidden");
+  });
+
+  // Clear form
+  editForm.querySelector(".clear-edit").addEventListener("click", (e) => {
+    e.preventDefault();
+    editForm.classList.add("is-hidden");
+  });
+
+  // Update post
+  editForm.querySelector(".update-post").addEventListener("click", async () => {
+    const updatedTitle = editForm.querySelector(".title-input").value.trim();
+    const updatedContent = editForm.querySelector(".content-input").value.trim();
+
+    if (!updatedTitle || !updatedContent) {
+      alert("Both title and content are required.");
+      return;
+    }
+
+    try {
+      const res = await fetch(`http://localhost:3000/api/posts/${post.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: updatedTitle,
+          content: updatedContent,
+        }),
+      });
+
+      if (res.ok) {
+        loadPosts(); // reload updated data
+      } else {
+        alert("Failed to update post.");
+      }
+    } catch (err) {
+      console.error("Error updating post:", err);
+      alert("Server error while updating.");
+    }
+  });
+
+  // === 🔁 END OF EDIT MODE ===
             buttonGroup.appendChild(editBtn);
             buttonGroup.appendChild(deleteBtn);
   

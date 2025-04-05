@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
           box.innerHTML = `
             <h3 class="title is-4">${post.title}</h3>
-            <p>${post.content}</p>
+            <div class="content-scroll">${post.content}</div>
           `;
   
           container.appendChild(box);

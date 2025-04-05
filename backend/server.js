@@ -54,6 +54,35 @@ app.delete('/api/posts/:id', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+// Update a blog post by ID
+app.put('/api/posts/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+
+  if (!title || !content) {
+    return res.status(400).json({ error: 'Title and content are required' });
+  }
+
+  try {
+    const result = await pool.query(
+      'UPDATE posts SET title = $1, content = $2 WHERE id = $3 RETURNING *',
+      [title, content, id]
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('Error updating post:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
