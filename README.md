@@ -1,4 +1,4 @@
-# 📝 Web2 Blog Manager
+# 📝 Simple Full-Stack Blog 
 
 A simple full-stack blog management system built with **HTML/CSS/JS (Bulma)** on the frontend, **Express.js** on the backend, and **PostgreSQL** as the database, running inside Docker.
 
